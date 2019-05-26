@@ -26,5 +26,5 @@ jobs:
                docker build -t danonmikiki/example-nodejs:lastest .
                docker build -t danonmikiki/example-nodejs:${CIRCLE_SHA1} .
                docker push danonmikiki/example-nodejs:lastest
-               docker push -t danonmikiki/example-nodejs:${CIRCLE_SHA1}
+               docker push danonmikiki/example-nodejs:${CIRCLE_SHA1}
       - run: echo Done
