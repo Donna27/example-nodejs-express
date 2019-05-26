@@ -38,5 +38,5 @@ jobs:
                      --imageUuid 'docker:ima8/example-nodejs-circle:lastest' \
                      --batch_size 3 --start_first \
                      --auto_complete  --timeout600 \
-                     /
+                      /
       - run: echo Done
