@@ -27,6 +27,7 @@ jobs:
                docker build -t danonmikiki/example-nodejs:${CIRCLE_SHA1} .
                docker push danonmikiki/example-nodejs:lastest
                docker push danonmikiki/example-nodejs:${CIRCLE_SHA1}
+      - setup_remote_docker 
       - run:
            name: "Call to rancher to deploy"
            command: |
