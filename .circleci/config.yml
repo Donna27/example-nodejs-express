@@ -16,4 +16,14 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm test
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+           name: "Build docker image and push to docker hub"
+           command: |
+               cp Dockerfile.production Dockerfile
+               docker build -t danonmikiki/example-nodejs:lastest .
+               docker build -t danonmikiki/example-nodejs:${CIRCLE_SHA1} .
+               docker push danonmikiki/example-nodejs:lastest .
+               docker push -t danonmikiki/example-nodejs:${CIRCLE_SHA1} .
       - run: echo Done
