@@ -27,15 +27,5 @@ jobs:
                docker build -t danonmikiki/example-nodejs:${CIRCLE_SHA1} .
                docker push danonmikiki/example-nodejs:lastest
                docker push danonmikiki/example-nodejs:${CIRCLE_SHA1}
-      - run:
-           name: "Call to rancher to deploy"
-           command: |
-                docker run --rm -it \
-                   -e CATTLE_ACCESS_KEY = "$CATTLE_ACCESS_KEY" \
-                   -e CATTLE_SECRET_KEY = "$CATTLE_SECRET_KEY" \
-                   -e CATTLE_URL = "$CATTLE_URL"
-                   eltweather/gaucho upgrade $RANCHER_EXAMPLE_NODEJS \
-                   --imageUuid 'docker:ima8/example-nodejs-circle:lastest' \
-                   --batch_size 3 --start_first \
-                   --auto_complete  --timeout600 \
+
       - run: echo Done
